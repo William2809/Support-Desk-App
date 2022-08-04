@@ -14,10 +14,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to the Support Desk API' });
-});
-
 //Routes
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/tickets', require('./routes/ticketRoutes'));
@@ -39,4 +35,4 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`server started on PORT ${PORT}`));
+app.listen(process.env.PORT || 5000, () => console.log(`server started on PORT ${PORT}`));
